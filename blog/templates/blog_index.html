@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Blog</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <div class="row d-flex justify-content-between">
+      
+    <h6 class="m-0 font-weight-bold text-primary">Data BLog</h6>
+    <a class="btn btn-primary " style="float: right;" href="{% url 'blog_create' %}">Tambah</a>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Date Create</th>
+            <th>Date Update</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Detail</th>
+            <th>Description</th>
+            <th>Files</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          {% for item in blog %}
+          <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ item.tanggal_dibuat }}</td>
+              <td>{{ item.tanggal_diperbarui }}</td>
+              <td>{{ item.author }}</td>
+              <td>{{ item.category }}</td>
+              <td>{{ item.detail }}</td>
+              <td>{{ item.description }}</td>
+              <td>
+                
+                <img src="{{ MEDIA_URL }}{{item.file}}" alt="{{item.file}}">
+              </td>
+              <td>
+                  <a href="{% url 'blog_edit' item.id %}" class="btn btn-warning">Edit</a>
+                  <a href="{% url 'blog_delete' item.id %}" class="btn btn-danger">Delete</a>
+              </td>
+          </tr>
+      {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}

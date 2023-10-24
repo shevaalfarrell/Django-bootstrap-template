@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <div class="row d-flex justify-content-between">
+      
+    <h6 class="m-0 font-weight-bold text-primary">DataUser</h6>
+    <a class="btn btn-primary " style="float: right;" href="{% url 'register' %}">Register</a>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Username</th>
+            <th>Email</th>
+            {% comment %} <th>Password</th> {% endcomment %}
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in all_users %}
+          <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ item.username }}</td>
+              <td>{{ item.email }}</td>
+              {% comment %} <td>{{ item.password }}</td> {% endcomment %}
+              <td>
+                  <a href="{% url 'delete' item.id %}" class="btn btn-danger">Delete</a>
+              </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}

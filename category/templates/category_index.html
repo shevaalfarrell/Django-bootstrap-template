@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <div class="row d-flex justify-content-between">
+      
+    <h6 class="m-0 font-weight-bold text-primary">Data Category</h6>
+    <a class="btn btn-primary " style="float: right;" href="{% url 'category_create' %}">Tambah</a>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Kategori</th>
+            {% comment %} <th>Password</th> {% endcomment %}
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in category %}
+          <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ item.nama_category }}</td>
+              {% comment %} <td>{{ item.password }}</td> {% endcomment %}
+              <td>
+                  <a href="{% url 'category_edit' item.id %}" class="btn btn-warning">Edit</a>
+                  <a href="{% url 'category_delete' item.id %}" class="btn btn-danger">Delete</a>
+              </td>
+          </tr>
+      {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}
