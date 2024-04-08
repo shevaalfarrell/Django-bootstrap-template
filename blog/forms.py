@@ -3,7 +3,7 @@ from .models import Blog
 from datetime import datetime
 from django.contrib.auth.models import User
 
-class RegisterForm(forms.ModelForm):
+class Form(forms.ModelForm):
     class Meta:
         model = Blog
         fields = ['category','detail','description','file']
