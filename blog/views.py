@@ -19,7 +19,7 @@ def blog_create(request):
 
 def blog_store(request):
     if request.method =='POST':
-        form = RegisterForm(request.POST, request.FILES)
+        form = Form(request.POST, request.FILES)
         if form.is_valid():
             form.user = request.user
             form.save()
@@ -37,7 +37,7 @@ def blog_edit(request, id):
 def blog_update(request, id):
     if request.method == 'POST':
         blog = get_object_or_404(Blog, id=id)
-        form = EditForm(request.POST, request.FILES, instance=blog)
+        form = Form(request.POST, request.FILES, instance=blog)
         if form.is_valid():
             form.user = request.user
             form.save()
